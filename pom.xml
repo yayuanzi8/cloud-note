@@ -22,6 +22,10 @@
     <modules>
         <module>eureka-server</module>
         <module>common</module>
+        <module>note-service</module>
+        <module>user-service</module>
+        <module>third-party-service</module>
+        <module>zuul-server</module>
     </modules>
 
     <properties>

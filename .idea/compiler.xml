@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="common" />
+        <module name="eureka-server" />
+        <module name="note-service" />
+        <module name="third-party-service" />
+        <module name="user-service" />
+        <module name="zuul-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="auth-dps" target="1.8" />
+      <module name="CloudNoteSystem" target="1.8" />
+      <module name="common" target="1.8" />
+      <module name="eureka-server" target="1.8" />
+      <module name="front-server" target="1.8" />
+      <module name="note-service" target="1.8" />
+      <module name="third-party-service" target="1.8" />
+      <module name="user-common" target="1.8" />
+      <module name="user-service" target="1.8" />
+      <module name="zuul-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,21 @@
+package win.yayuanzi8.noteservice.model.response;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import win.yayuanzi8.common.response.RestfulResponse;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler", "fieldHandler"}, ignoreUnknown = true)
+public class MoveResponse extends RestfulResponse {
+    @JsonProperty("changeNum")
+    private final Integer changeNum;
+
+    public MoveResponse(Integer changeNum) {
+        this.changeNum = changeNum;
+    }
+
+    public Integer getChangeNum() {
+        return changeNum;
+    }
+}

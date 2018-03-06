@@ -50,8 +50,8 @@ public class DirectoryRepositoryImpl implements DirectoryOperations {
             List<BasicDBObject> updateList = new ArrayList<>();
             for (Directory directory : dirWillBeUpdated) {
                 Update update1 = new Update();
-                update1.set("parent", directory.getParent());
                 update1.set("path", directory.getPath());
+                update1.set("dirName", directory.getDirName());
                 BatchUpdateOptions option = new BatchUpdateOptions(Query.query(Criteria.where("uid").is(uid).and("_id").is(new ObjectId(directory.getDid()))),
                         update1, false, true);
                 BasicDBObject update = new BasicDBObject();

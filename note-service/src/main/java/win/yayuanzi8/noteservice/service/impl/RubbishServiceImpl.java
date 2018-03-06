@@ -82,8 +82,7 @@ public class RubbishServiceImpl implements RubbishService {
             List<BaseFile> inserted = new ArrayList<>(insertedDirectories.size() + insertedNotes.size());
             inserted.addAll(insertedDirectories);
             inserted.addAll(insertedNotes);
-
-            rubbishRepository.delete(rid);
+            rubbishRepository.delete(rubbishes);
             return inserted;
         }
         return new ArrayList<>();

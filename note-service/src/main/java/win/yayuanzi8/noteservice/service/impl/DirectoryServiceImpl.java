@@ -255,7 +255,7 @@ public class DirectoryServiceImpl implements DirectoryService {
         regexSet.add("^" + directory.getPath() + pathUtil.getPathSeperator() + pathUtil.getPathRegex());
         List<Directory> directoryList = directoryRepository.batchQuery(uid, regexSet);
         List<Note> noteList = noteRepository.batchQuery(uid, regexSet);
-        String newPath = parentPath + newName;
+        String newPath = parentPath + pathUtil.getPathSeperator() + newName;
         directory.setDirName(newName);
         directory.setPath(newPath);
         for (Directory d : directoryList) {
@@ -264,6 +264,7 @@ public class DirectoryServiceImpl implements DirectoryService {
         for (Note n : noteList) {
             n.setPath(n.getPath().replaceFirst(oldPath, newPath));
         }
+        directoryList.add(directory);
         Integer changeNum = 0;
         changeNum += directoryRepository.batchUpdate(uid, directoryList);
         changeNum += noteRepository.batchUpdate(uid, noteList);

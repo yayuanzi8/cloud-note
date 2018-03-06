@@ -6,14 +6,10 @@ import win.yayuanzi8.noteservice.domain.Directory;
 import java.util.List;
 import java.util.Set;
 
-public interface DirectoryRepository extends MongoRepository<Directory,String>,DirectoryOperations {
-    List<Directory> findByUid(Integer uid);
+public interface DirectoryRepository extends MongoRepository<Directory, String>, DirectoryOperations {
 
     Directory findByUidAndDid(Integer uid, String did);
 
-    List<Directory> findAllByUidAndParent(Integer uid,String parent);
-
     List<Directory> findAllByUidAndDidIn(Integer uid, Set<String> dids);
 
-    Integer removeAllByUidAndDidIn(Integer uid, List<String> didList);
 }

@@ -31,7 +31,6 @@ public class NoteRepositoryImpl implements NoteOperations {
         Update update = new Update();
         update.set("title", note.getTitle());
         update.set("content", note.getContent());
-        update.set("parent", note.getParent());
         update.set("path", note.getPath());
         mongoTemplate.updateFirst(query,update,Note.class,"note");
         return note;
@@ -67,8 +66,8 @@ public class NoteRepositoryImpl implements NoteOperations {
             List<BasicDBObject> updateList = new ArrayList<>();
             for (Note note : noteWillBeUpdated) {
                 Update update1 = new Update();
-                update1.set("parent", note.getParent());
                 update1.set("path", note.getPath());
+                update1.set("title", note.getTitle());
                 BatchUpdateOptions option = new BatchUpdateOptions(Query.query(Criteria.where("uid").is(uid).and("_id").is(new ObjectId(note.getNid()))),
                         update1, false, true);
                 BasicDBObject update = new BasicDBObject();

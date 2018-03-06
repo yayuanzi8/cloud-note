@@ -1,6 +1,5 @@
 package win.yayuanzi8.noteservice.domain;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,9 +13,6 @@ public abstract class BaseFile implements Serializable, Comparable<BaseFile> {
 
     //所属用户
     private Integer uid;
-
-    //所属父目录
-    private String parent;
 
     //类型：note或directory
     private String type;
@@ -48,14 +44,6 @@ public abstract class BaseFile implements Serializable, Comparable<BaseFile> {
         this.uid = uid;
     }
 
-    public String getParent() {
-        return parent;
-    }
-
-    public void setParent(String parent) {
-        this.parent = parent;
-    }
-
     public String getType() {
         return type;
     }
@@ -66,30 +54,23 @@ public abstract class BaseFile implements Serializable, Comparable<BaseFile> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         BaseFile file = (BaseFile) o;
 
-        if (createTime != null ? !createTime.equals(file.createTime) : file.createTime != null) {
-            return false;
-        }
-        if (uid != null ? !uid.equals(file.uid) : file.uid != null) {
-            return false;
-        }
-        return (parent != null ? parent.equals(file.parent) : file.parent == null) && (type != null ? type.equals(file.type) : file.type == null);
+        if (createTime != null ? !createTime.equals(file.createTime) : file.createTime != null) return false;
+        if (uid != null ? !uid.equals(file.uid) : file.uid != null) return false;
+        if (type != null ? !type.equals(file.type) : file.type != null) return false;
+        return path != null ? path.equals(file.path) : file.path == null;
     }
 
     @Override
     public int hashCode() {
         int result = createTime != null ? createTime.hashCode() : 0;
         result = 31 * result + (uid != null ? uid.hashCode() : 0);
-        result = 31 * result + (parent != null ? parent.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (path != null ? path.hashCode() : 0);
         return result;
     }
 

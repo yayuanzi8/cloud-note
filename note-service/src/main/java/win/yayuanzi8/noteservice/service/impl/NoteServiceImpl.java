@@ -39,8 +39,8 @@ public class NoteServiceImpl implements NoteService {
         note.setType("note");
         note.setUid(uid);
         Directory parentDir = directoryRepository.findByUidAndDid(uid, parent);
-        String parentPath = pathUtil.getDirPath(parentDir,"");
-        if (pathUtil.existsNoteInThisLevel(parentPath,uid, title)){
+        String parentPath = pathUtil.getDirPath(parentDir, "");
+        if (pathUtil.existsNoteInThisLevel(parentPath, uid, title)) {
             Shift.fatal(StatusCode.DUPLICATE_NOTE_NAME);
         }
         note.setPath(parentPath + pathUtil.getPathSeperator() + title);
@@ -50,6 +50,10 @@ public class NoteServiceImpl implements NoteService {
     @Override
     public Note updateNote(String nid, String title, String content, Integer uid) {
         Note note = noteRepository.findByUidAndNid(uid, nid);
+        int index = note.getPath().lastIndexOf(note.getTitle());
+        String parentPath = note.getPath().substring(0, index - 1);
+        String newPath = parentPath + pathUtil.getPathSeperator() + title;
+        note.setPath(newPath);
         note.setTitle(title);
         note.setContent(content);
         return noteRepository.updateNote(note);
@@ -58,16 +62,16 @@ public class NoteServiceImpl implements NoteService {
     @Override
     public Integer rename(String nid, String newName, Integer uid) {
         Note note = noteRepository.findByUidAndNid(uid, nid);
-        if (note == null){
+        if (note == null) {
             Shift.fatal(StatusCode.NOTE_NOT_EXIST);
         }
         int index = note.getPath().lastIndexOf(note.getTitle());
         String parentPath = note.getPath().substring(0, index - 1);
-        if (pathUtil.existsNoteInThisLevel(parentPath, uid, note.getTitle())){
+        if (pathUtil.existsNoteInThisLevel(parentPath, uid, newName)) {
             Shift.fatal(StatusCode.DUPLICATE_NOTE_NAME);
         }
         note.setTitle(newName);
-        note.setPath(parentPath + newName);
+        note.setPath(parentPath + pathUtil.getPathSeperator() + newName);
         Integer changeNum = 0;
         List<Note> noteList = new ArrayList<>();
         noteList.add(note);

@@ -39,7 +39,7 @@
         <thymeleaf-layout-dialect.version>2.1.1</thymeleaf-layout-dialect.version>
         <spring-cloud.version>Dalston.SR4</spring-cloud.version>
         <guava.version>21.0</guava.version>
-        <jackson-datatype.version>2.8.7</jackson-datatype.version>
+        <jackson-datatype.version>2.9.8</jackson-datatype.version>
     </properties>
 
     <dependencyManagement>
